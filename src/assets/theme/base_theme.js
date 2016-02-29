@@ -14,13 +14,13 @@ export default {
     primary2Color: Colors.indigo700,
     primary3Color: Colors.indigo300,
     accent1Color: Colors.redA300,
-    accent2Color: Colors.indigo500,
+    accent2Color: Colors.indigo400,
     accent3Color: Colors.redA500,
     textColor: Colors.darkBlack,
     alternateTextColor: Colors.white,
     canvasColor: Colors.white,
-    borderColor: Colors.grey100,
-    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.2),
+    borderColor: Colors.white,
+    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
     pickerHeaderColor: Colors.lightBlue500,
   }
 };

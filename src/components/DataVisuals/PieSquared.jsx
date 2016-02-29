@@ -1,50 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Chart} from 'd3-react-squared';
+import Chart from 'd3-react-squared';
 
-class PieSq extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      data: [],
-      title: ''
-    }
-    this.mapData.bind(this);
-  }
-
-  mapData(array){
-    let formatData = (obj) => {
-    for (var key of Object.keys(obj)) {
-      return { labels: key, values: [obj[key]] }
-      }
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    debugger
-    let newData = this.mapData(nextProps.data);
-    this.setState({
-      data: newData
+const PieSq = ({data}) => {
+  function mapData(array){
+    if(array != undefined){
+    let data = array.map((item) => {
+       return {
+         id: item.industry_name || item.sector_name,
+       value: item.money_from_pacs + item.money_from_indivs
+     }
     });
+    return data;
+    }
   }
 
-  render() {
+  let formattedData = mapData(data);
+  
     return (
         <Chart
         chartType='pie'
-        data={this.state.data}
+        data={formattedData}
         paddingBottom='100%'
+        highlight={false}
         params={
           {
             colorArray: d3.scale.category20().range(),
             colorType: 'category',
-            cornerRadius: 20,
-            innerRadius: 100
+            cornerRadius: 0,
+            innerRadius: 0
           }
-        }
-      />
+        }/>
     )
-  }
+
 }
 
 export default PieSq;

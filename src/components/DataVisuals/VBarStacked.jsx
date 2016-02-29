@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import {VictoryBar, VictoryAxis, VictoryChart} from 'victory';
 
 const VBar = ({data}) => {
-  debugger
+
   function mapData(array){
     if(array != undefined){
     let data1 = array.map((item) => {
@@ -36,26 +36,18 @@ const VBar = ({data}) => {
     }}
     domainPadding={{x: 20}}>
     <VictoryAxis
-      label="Sectors"
-      orientation="bottom"/>
-    <VictoryAxis dependentAxis
-      tickValues={[0, 2500, 5000, 7500, 10000]}
-      style={{
-        grid: {
-          stroke: "grey",
-          strokeWidth: 1
-        },
-        axis: {stroke: "transparent"},
-        ticks: {stroke: "transparent"}
-      }}/>
+      label="Industries"
+      orientation="left"/>
     <VictoryBar
+      height = {500}
+      padding = {75}
       style={{
         data: {
           width: 15,
-          fill: (data) => data.y > 0 && data.x == 'Misc Unions' ?
-            "gold" : "orange"
+          labels: {fontSize:14}
         }
       }}
+      labels = {}
       data={formattedData}/>
   </VictoryChart>
 

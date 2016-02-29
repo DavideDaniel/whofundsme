@@ -14,7 +14,8 @@ const CandidateDisplayContainer = ({candidates}) => {
         <Col className="col-xs-12 col-sm-8 col-md-6 col-lg-4" key={index}>
           <Box>
             <Paper style={{
-              "width": "100%"
+              "width": "100%",
+              "height": "100%"
             }} zDepth={1} rounded={true}>
               <div style={{
                 "padding": "1em"
@@ -25,7 +26,7 @@ const CandidateDisplayContainer = ({candidates}) => {
                 }}>
                   <Card initiallyExpanded={true}>
                     <CardHeader title={candidate.name} subtitle={candidate.state} avatar={< Avatar />} showExpandableButton={true}/>
-                    <Card initiallyExpanded={false} >
+                    <Card>
                   <Row className="row center-xs">
                       <Col className="col-xs-6">
                         <Box>
@@ -35,12 +36,15 @@ const CandidateDisplayContainer = ({candidates}) => {
                         </Box>
                       </Col>
                     </Row>
+                    </Card>
+                    </Card>
                     <Card>
-                    <CardHeader showExpandableButton={true} />
-                    <Pie data={candidate.industries} title={'$ from industries'}/>
-                    </Card>
-                    </Card>
+                    <CardHeader title={'Industries'} showExpandableButton={true} />
+                    <Card initiallyExpanded={false} expandabale={true}>
+                  <Pie style={{"margin":"0 auto"}} data={candidate.industries} title={'$ from industries'}/>
                   </Card>
+                    </Card>
+
                 </div>
               </div>
             </Paper>

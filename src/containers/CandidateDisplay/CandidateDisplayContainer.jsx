@@ -52,7 +52,7 @@ const CandidateDisplayContainer = ({candidates}) => {
                     </Card>
                     <Card>
                     <CardHeader title={'Industries'} showExpandableButton={true}/>
-                    <Card initiallyExpanded={false} expandable={true}>
+                    <Card initiallyExpanded={true} expandable={true}>
                   <VBar data={candidate.industries} />
                   </Card>
                     </Card>

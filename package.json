@@ -1,7 +1,7 @@
 {
-  "name": "influence",
-  "version": "0.0.1",
-  "description": "Influence of money on politics",
+  "name": "whofundsme",
+  "version": "0.5.0",
+  "description": "Who funds our politicians? Take a look.",
   "main": "main.js",
   "scripts": {
     "test": "test",
@@ -30,6 +30,7 @@
     "react-autosuggest": "^3.5.0",
     "react-d3": "^0.4.0",
     "react-d3-components": "^0.6.2",
+    "react-d3-core": "^1.1.4",
     "react-dom": "0.14.7",
     "react-motion": "^0.4.2",
     "react-redux": "4.4.0",

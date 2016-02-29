@@ -1,24 +1,24 @@
 import React, { PropTypes } from 'react';
 import {VictoryBar, VictoryAxis, VictoryChart} from 'victory';
 
-const VBar = ({data}) => {
+
+const VBarStacked = ({data}) => {
 
   function mapData(array){
     if(array != undefined){
-    let data1 = array.map((item) => {
-       return {
+    let newData = array.map((item) => {
+
+        [ {
          x: (item.industry_name || item.sector_name)+('- Pacs'),
          y: item.money_from_pacs,
-         fill: "red"
-     }
+         fill: "red" },
+         {
+           x: (item.industry_name || item.sector_name)+('- Individual'),
+           y: item.money_from_indivs
+         }
+     ]
     });
-    let data2 = array.map((item)=>{
-     return {
-       x: (item.industry_name || item.sector_name)+('- Individual'),
-       y: item.money_from_indivs
-     }
-    });
-    let newData = [...data1,...data2]
+
     return newData;
     }
   }
@@ -39,6 +39,7 @@ const VBar = ({data}) => {
       label="Industries"
       orientation="left"/>
     <VictoryBar
+      stacked
       height = {500}
       padding = {75}
       style={{
@@ -54,4 +55,4 @@ const VBar = ({data}) => {
   )
 }
 
-export default VBar;
+export default VBarStacked;

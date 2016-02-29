@@ -18,15 +18,22 @@ const VPie = ({data}) => {
   let formattedData = mapData(data);
 
   return (
-    <VictoryPie  data={formattedData} style={{
+    <VictoryPie
+      data={formattedData}
+      style={{
         data: {
-          stroke: (data) => data.y > 10000 ? 'black':'transparent', opacity:(data)=> data.y > 10000 ? 1:0.5
+          stroke: (data) => data.y > 100000 ? 'black':'transparent', opacity:(data)=> data.y > 100000 ? 1:0.5
         },
-      labels: {
-        fontSize: 10,
-        padding: 200
-      }
-    }} />
+        labels: {
+          fontSize: 12,
+          padding: 300
+        }
+      }}
+      padAngle={2}
+      padding={60}
+      innerRadius={10}
+      height={650}
+      width={650} />
   )
 }
 

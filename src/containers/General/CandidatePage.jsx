@@ -13,6 +13,9 @@ class CandidatePage extends Component {
     this.handleAddCandidate = this.handleAddCandidate.bind(this);
   }
 
+  componentWillMount() {
+    
+  }
   componentDidMount() {
     // this.init(this.props)
   }

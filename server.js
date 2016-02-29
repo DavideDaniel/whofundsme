@@ -14,6 +14,7 @@ var twitterClient = new Twitter({
 
 app.set('port', (process.env.PORT || 4000));
 
+// route to get twitter info
 app.use('/resources', express.static(path.join(__dirname, 'public/resources')));
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 app.use(rewrite('/*', '/index.html'));

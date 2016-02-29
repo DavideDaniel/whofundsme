@@ -1,0 +1,26 @@
+'use strict'
+
+import Colors from 'material-ui/lib/styles/colors';
+import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
+import Spacing from 'material-ui/lib/styles/spacing';
+import zIndex from 'material-ui/lib/styles/zIndex';
+
+export default {
+  spacing: Spacing,
+  zIndex: zIndex,
+  fontFamily: 'Roboto, sans-serif',
+  palette: {
+    primary1Color: Colors.indigo500,
+    primary2Color: Colors.indigo700,
+    primary3Color: Colors.indigo300,
+    accent1Color: Colors.redA300,
+    accent2Color: Colors.indigo400,
+    accent3Color: Colors.redA500,
+    textColor: Colors.darkBlack,
+    alternateTextColor: Colors.white,
+    canvasColor: Colors.white,
+    borderColor: Colors.white,
+    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
+    pickerHeaderColor: Colors.lightBlue500,
+  }
+};

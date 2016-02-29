@@ -39,7 +39,8 @@
     "reduce-reducers": "0.1.2",
     "redux": "3.3.0",
     "redux-thunk": "1.0.3",
-    "twitter": "^1.2.5"
+    "twitter": "^1.2.5",
+    "victory": "^0.4.0"
   },
   "author": "",
   "devDependencies": {

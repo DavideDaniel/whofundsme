@@ -3,7 +3,7 @@ import Col from '../../components/FlexboxGrid/Col.jsx';
 import Box from '../../components/FlexboxGrid/Box.jsx';
 import {Paper,Card,CardHeader,FlatButton,Avatar} from 'material-ui';
 import React from 'react'
-import Pie from '../../components/DataVisuals/Pie.jsx';
+import VBar from '../../components/DataVisuals/VBar.jsx';
 import PieSquared from '../../components/DataVisuals/PieSquared.jsx';
 
 const CandidateDisplayContainer = ({candidates}) => {
@@ -39,15 +39,15 @@ const CandidateDisplayContainer = ({candidates}) => {
                     </Card>
                     </Card>
                     <Card>
-                    <CardHeader title={'Industries'} showExpandableButton={true} />
-                    <Card initiallyExpanded={false} expandabale={true}>
-                  <Pie style={{"margin":"0 auto"}} data={candidate.industries} title={'$ from industries'}/>
+                    <CardHeader title={'Industries'} />
+                    <Card expandable={false}>
+                  <VBar data={candidate.industries} />
                   </Card>
                     </Card>
                     <Card>
                     <CardHeader title={'Sectors'} showExpandableButton={true} />
-                    <Card initiallyExpanded={false} expandabale={true}>
-                      <PieSquared  data={candidate.industries} title={'$ from sectors'}/>
+                    <Card initiallyExpanded={false} expandable={true}>
+                      <PieSquared  data={candidate.sectors} title={'$ from sectors'}/>
                   </Card>
                     </Card>
 

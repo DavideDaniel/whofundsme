@@ -14,15 +14,11 @@ class CandidatePage extends Component {
   }
 
   componentDidMount() {
-
     // this.init(this.props)
   }
 
   componentWillReceiveProps(nextProps){
-    debugger
-    this.setState({
-      candidates: this.state.candidates.concat([nextProps.candidates])
-    });
+
   }
 
   componentWillUnmount() {

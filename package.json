@@ -7,7 +7,7 @@
     "test": "test",
     "clean": "rimraf ./public/resources",
     "start": "npm run clean & node devServer.js",
-    "serve": "npm run clean & npm run build-client & node server.js",
+    "serve": "npm run clean & npm run build-client",
     "build": "webpack --config ./build-conf/webpack.config.js --progress --colors",
     "build-dev": "webpack --config ./build-conf/webpack-dev.config.js --progress --colors",
     "build-client": "webpack --config ./build-conf/webpack.config.js --progress --colors",

@@ -17,7 +17,7 @@ module.exports = [
                     query: {
                         cacheDirectory: true,
                         presets: ['react', 'es2015', 'stage-2'],
-                        plugins: ['transform-runtime', 'add-module-exports']
+                        plugins: ['transform-runtime', 'add-module-exports', 'transform-decorators-legacy']
                     }
                 },
                 { test: /\.css$/, exclude: /node_modules/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },

@@ -1,3 +1,4 @@
+*.gzip
 .DS_Store
 *.node
 *.log

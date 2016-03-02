@@ -86,8 +86,7 @@ const VBar = ({data}) => {
           right: 80
         }}
         domainPadding={{x:20,y:20}}>
-          <VictoryAxis
-  label="Industries"/>
+          <VictoryAxis style={{tickLabels:{fontSize:0}}}/>
         <VictoryAxis
           dependentAxis
           style={{
@@ -98,7 +97,6 @@ const VBar = ({data}) => {
       label: {stroke: "transparent"}
       }}/>
       <VictoryBar
-
       style={{
         data: {
           width: 12

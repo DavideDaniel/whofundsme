@@ -66,7 +66,7 @@ class CandidateMenuBar extends Component {
     return (
       <div>
         <Toolbar>
-          <ToolbarTitle firstChild={true} float= "left" text={"WhoFundsMe"}/>
+          <ToolbarTitle style={{color:'white', fontFamily:'Roboto'}}firstChild={true} float= "left" text={"WhoFundsMe"}/>
           <ToolbarGroup float="right">
             {dropMenu}
             <ToolbarSeparator/>

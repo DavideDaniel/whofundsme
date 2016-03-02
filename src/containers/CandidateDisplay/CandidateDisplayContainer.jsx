@@ -51,15 +51,15 @@ const CandidateDisplayContainer = ({candidates}) => {
                     </Card>
                     </Card>
                     <Card>
-                    <CardHeader title={'Industries'} showExpandableButton={true}/>
+                    <CardHeader title={'Finances'} showExpandableButton={true}/>
                     <Card initiallyExpanded={false} expandable={true}>
-                  <VBar data={candidate.industries} />
+                  <VBarStacked data={candidate.monies} />
                   </Card>
                     </Card>
                     <Card>
-                    <CardHeader title={'Industries stacked'} showExpandableButton={true}/>
+                    <CardHeader title={'Industries'} showExpandableButton={true}/>
                     <Card initiallyExpanded={false} expandable={true}>
-                  <VBarStacked data={candidate.industries} />
+                  <VBar data={candidate.industries} />
                   </Card>
                     </Card>
                     <Card>

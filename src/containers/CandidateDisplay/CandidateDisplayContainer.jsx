@@ -4,6 +4,7 @@ import Box from '../../components/FlexboxGrid/Box.jsx';
 import {Paper,Card,CardHeader,FlatButton,Avatar} from 'material-ui';
 import React from 'react'
 import VBar from '../../components/DataVisuals/VBar.jsx';
+import VBarStacked from '../../components/DataVisuals/VBarStacked.jsx';
 import VPie from '../../components/DataVisuals/VPie.jsx';
 
 const CandidateDisplayContainer = ({candidates}) => {
@@ -18,7 +19,6 @@ const CandidateDisplayContainer = ({candidates}) => {
     return candidate.party == 'R' ? `${subStr} Republican`:`${subStr} Democrat`
   }
 
-  debugger
   return (
     <Box>
       <Row>
@@ -52,8 +52,14 @@ const CandidateDisplayContainer = ({candidates}) => {
                     </Card>
                     <Card>
                     <CardHeader title={'Industries'} showExpandableButton={true}/>
-                    <Card initiallyExpanded={true} expandable={true}>
+                    <Card initiallyExpanded={false} expandable={true}>
                   <VBar data={candidate.industries} />
+                  </Card>
+                    </Card>
+                    <Card>
+                    <CardHeader title={'Industries stacked'} showExpandableButton={true}/>
+                    <Card initiallyExpanded={false} expandable={true}>
+                  <VBarStacked data={candidate.industries} />
                   </Card>
                     </Card>
                     <Card>

@@ -2,7 +2,6 @@ var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
 var config = require('./build-conf/webpack.config.dev');
-
 var app = express();
 var compiler = webpack(config);
 
@@ -17,7 +16,7 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
-app.listen(5000, 'localhost', function(err) {
+app.listen(4000, 'localhost', function(err) {
   if (err) {
     console.log(err);
     return;

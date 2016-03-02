@@ -75,26 +75,39 @@ const VBar = ({data}) => {
       }]
   return (
 
-      <VictoryChart
-        height={600}
-        width={600}
-        padding={{
-        top: 40,
-        bottom: 40,
-        left: 40,
-        right: 80
-      }}
-      domainPadding={{x:20,y:20}}
-        >
+      <div>
+        <VictoryChart
+          height={600}
+          width={600}
+          padding={{
+          top: 40,
+          bottom: 40,
+          left: 80,
+          right: 80
+        }}
+        domainPadding={{x:20,y:20}}>
+          <VictoryAxis
+  label="Industries"/>
+        <VictoryAxis
+          dependentAxis
+          style={{
+      grid: {
+        strokeWidth: 1
+      },
+      axis: {stroke: "transparent"},
+      label: {stroke: "transparent"}
+      }}/>
       <VictoryBar
+
       style={{
         data: {
           width: 12
         }
       }}
+      labels = {makeLabels(cleaned)}
       data={cleanData(cleaned)}
-      />
-    </VictoryChart>
+      /></VictoryChart>
+    </div>
   )
 }
 

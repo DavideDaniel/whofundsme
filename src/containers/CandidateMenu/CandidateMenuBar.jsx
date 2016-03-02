@@ -20,10 +20,6 @@ class CandidateMenuBar extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  setMenuRef(){
-
-  }
-
   setCandidateRef(ref){
     this.setState({candidateChoice: ref});
   }
@@ -59,7 +55,7 @@ class CandidateMenuBar extends Component {
       );
     } else {
       dropMenu = (<DropDownMenu disabled={true}>
-        <CandidateMenuSelectItem primaryText={`Choose your state first`}/>
+        <MenuItem primaryText={`Choose your state first`}/>
         </DropDownMenu>);
     }
     let states;
@@ -70,7 +66,7 @@ class CandidateMenuBar extends Component {
     return (
       <div>
         <Toolbar>
-          <ToolbarTitle firstChild={true} float= "left" text={"Influence"}/>
+          <ToolbarTitle firstChild={true} float= "left" text={"WhoFundsMe"}/>
           <ToolbarGroup float="right">
             {dropMenu}
             <ToolbarSeparator/>

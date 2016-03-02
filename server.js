@@ -11,7 +11,7 @@ var twitterClient = new Twitter({
   consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
   bearer_token: process.env.TWITTER_BEARER_TOKEN,
 });
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (5000));
 
 // route to get twitter info
 app.use('/resources', express.static(path.join(__dirname, 'public/resources')));

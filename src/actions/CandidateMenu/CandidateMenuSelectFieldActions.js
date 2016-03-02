@@ -4,7 +4,6 @@ import { getCandidate } from '../../api/api.js';
 const FETCH_CANDIDATE = 'FETCH_CANDIDATE';
 
 export function fetchCandidate(name) {
-    console.log(name)
     return (dispatch, getState)=> wrapPromise(FETCH_CANDIDATE, dispatch, ()=>{
       return getCandidate(name).then(response => {
         let result = {
@@ -20,25 +19,11 @@ export function fetchCandidate(name) {
           industries: response.industries,
           sectors: response.sectors
         }
-        console.log(result);
         return result;
     });
   });
 }
 
-// export default function(state = {}, action = {
-//         type: 'UNKNOWN'
-//     }) {
-//     const {type, stage, payload} = parseAction(action);
-//     if (type === FETCH_CANDIDATE) {
-//         state = Object.assign({}, state, {
-//             result: payload
-//         });
-//         return state;
-//     }
-//
-//     return state;
-// }
 export default function(state = {}, action = {
   type: 'UNKNOWN'
 }) {

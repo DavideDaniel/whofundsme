@@ -4,7 +4,6 @@ import { getTwitterInfo } from '../../api/api.js';
 const ADD_CANDIDATE = 'ADD_CANDIDATE';
 
 export function addCandidate(name) {
-  //   console.log(name)
   //   return (dispatch, getState)=> wrapPromise(ADD_CANDIDATE, dispatch, ()=>{
   //     return getTwitterInfo(name).then(response => {
   //

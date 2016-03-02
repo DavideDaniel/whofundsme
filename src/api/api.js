@@ -7,8 +7,7 @@ export function getTwitterInfo(twitter_id){
 }
 
 export function readData(searchTerm) {
-  console.log('inside fetch ' + searchTerm)
-  return fetch(`http://localhost:3000/api/legislators?state=${searchTerm}`, {
+  return fetch(`http://159.203.80.123:3000/api/legislators?state=${searchTerm}`, {
       method: 'get',
       headers: {
         'Accept': 'application/json',
@@ -16,7 +15,6 @@ export function readData(searchTerm) {
       }
     })
     .then(response => {
-      console.log('Received : ' + response);
       console.log('Response status: ' + response.status);
       console.log('Response statusText: ' + response.statusText);
       if (response.status >= 200 && response.status < 300) {
@@ -34,8 +32,7 @@ export function readData(searchTerm) {
 }
 
 export function getCandidate(crp_id) {
-  console.log('inside fetch '+crp_id)
-  return fetch(`http://localhost:3000/api/legislatorByCrpId/${crp_id}/`, {
+  return fetch(`http://159.203.80.123:3000/api/legislatorByCrpId/${crp_id}/`, {
       method: 'get',
       headers: {
         'Accept': 'application/json',

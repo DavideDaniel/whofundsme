@@ -32,7 +32,7 @@ export function readData(searchTerm) {
 }
 
 export function getCandidate(crp_id) {
-  return fetch(`http://159.203.80.123:3000/api/legislatorByCrpId/${crp_id}/`, {
+  return fetch(`http://159.203.80.123:3000/api/legislators?crp_id=${crp_id}/`, {
       method: 'get',
       headers: {
         'Accept': 'application/json',

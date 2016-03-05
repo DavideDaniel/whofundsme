@@ -15,7 +15,7 @@ export function fetchCandidate(name) {
           crp_id: response.crp_id,
           party: response.party,
           bills: response.bills,
-          monies: response.monies,
+          summary: response.summary,
           industries: response.industries,
           sectors: response.sectors
         }

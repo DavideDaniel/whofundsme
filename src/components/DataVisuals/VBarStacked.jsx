@@ -29,10 +29,10 @@ const VBarStacked = ({data}) => {
     let newData = [[
       {
       x: 1,
-      y: data.total_reciepts,
-      label: 'Recieved '+formatMoney(data.total_reciepts),
+      y: data.total,
+      label: 'Recieved '+formatMoney(data.total),
       fill: 'tomato'},
-      { x:2, y:data.total_spent,label:'Spent '+formatMoney(data.total_spent),fill: 'gold'},
+      { x:2, y:data.spent,label:'Spent '+formatMoney(data.spent),fill: 'gold'},
       { x:3, y:data.cash_on_hand,label:'Cash on hand '+formatMoney(data.cash_on_hand), fill:'orange'},
       { x:4, y:data.debt,label:'Debt '+formatMoney(data.debt), fill:'salmon'}]
     ]

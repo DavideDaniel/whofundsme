@@ -18,7 +18,6 @@ const CandidateDisplayContainer = ({candidates}) => {
     let subStr = `${candidate.state}, ${candidate.chamber.capitalize()}`
     return candidate.party == 'R' ? `${subStr} Republican`:`${subStr} Democrat`
   }
-
   return (
     <Box>
       <Row>
@@ -53,7 +52,7 @@ const CandidateDisplayContainer = ({candidates}) => {
                     <Card>
                     <CardHeader title={'Finances'} showExpandableButton={true}/>
                     <Card initiallyExpanded={false} expandable={true}>
-                  <VBarStacked data={candidate.monies} />
+                  <VBarStacked data={candidate.summary} />
                   </Card>
                     </Card>
                     <Card>

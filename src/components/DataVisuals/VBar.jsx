@@ -40,6 +40,7 @@ const VBar = ({data}) => {
 
   let formattedData = mapData(data);
   let cleaned = cleanData(formattedData);
+
   function makeLabels(array) {
     let labels = array.map((item) => {
       return item.x

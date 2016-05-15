@@ -2,83 +2,89 @@ import Row from '../../components/FlexboxGrid/Row.jsx';
 import Col from '../../components/FlexboxGrid/Col.jsx';
 import Box from '../../components/FlexboxGrid/Box.jsx';
 import {Paper,Card,CardHeader,FlatButton,Avatar} from 'material-ui';
-import React from 'react'
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import VBar from '../../components/DataVisuals/VBar.jsx';
 import VBarStacked from '../../components/DataVisuals/VBarStacked.jsx';
 import VPie from '../../components/DataVisuals/VPie.jsx';
+import CandidateBox from './CandidateBoxContainer.jsx';
 
-const CandidateDisplayContainer = ({candidates}) => {
-  String.prototype.capitalize = function(lower) {
-  return (lower ? this.toLowerCase() : this).replace(/(?:^|\s)\S/g, function(a) {
-    return a.toUpperCase();
-    });
+class CandidateDisplayContainer extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      candidates: []
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({candidates: [...nextProps.candidates]});
   }
 
-  function formatSubtitle(candidate){
-    let subStr = `${candidate.state}, ${candidate.chamber.capitalize()}`
-    return candidate.party == 'R' ? `${subStr} Republican`:`${subStr} Democrat`
-  }
+  componentWillMount() {
+    // debugger
+    // const mapContainer = d3.select('.visual-container');
+    //     const initialScreenWidth = this.currentScreenWidth();
+    //     const containerWidth = (initialScreenWidth < 600) ?
+    //       { width: initialScreenWidth + 'px',  height: (initialScreenWidth * 0.5625) + 'px' } :
+    //       { width: '600px', height: '350px' }
+    //       // { width: '600px', height: '350px' }
+    //
+    //     mapContainer.style(containerWidth);
+    //     this.datamap = this.renderMap();
+    //     window.addEventListener('resize', () => {
+    //       const currentScreenWidth = this.currentScreenWidth();
+    //       const mapContainerWidth = mapContainer.style('width');
+    //       if (this.currentScreenWidth() > 600 && mapContainerWidth !== '600px') {
+    //         d3.select('svg').remove();
+    //         mapContainer.style({
+    //           width: '90%',
+    //           height: '30%'
+    //         });
+    //         this.datamap = this.renderMap();
+    //       }
+    //       else if (this.currentScreenWidth() <= 600) {
+    //         d3.select('svg').remove();
+    //         mapContainer.style({
+    //           width: currentScreenWidth + 'px',
+    //           height: (currentScreenWidth * 0.5625) + 'px'
+    //         });
+    //         this.datamap = this.renderMap();
+    //       }
+    //     });
+      }
+
+    currentScreenWidth(){
+      return window.innerWidth ||
+          document.documentElement.clientWidth ||
+          document.body.clientWidth;
+    }
+    render(){
+      const {candidates} = this.props;
+      console.log(candidates)
+      debugger
+      let candidateBoxes = candidates.map((candidate, index) => {
+        return (
+        <CandidateBox key={index} candidate={candidate} />
+      )
+    })
   return (
-    <Box>
+    <Box {...this.props}>
       <Row>
-      {candidates.map((candidate, index) => (
-        <Col className="col-xs-12 col-sm-12 col-md-6 col-lg-6" key={index}>
-          <Box>
-            <Paper style={{
-              "width": "100%",
-              "height": "100%"
-            }} zDepth={1} rounded={true}>
-              <div style={{
-                "padding": "1em"
-              }}>
-                <div style={{
-                  "display": "block",
-                  "padding": "0.5em"
-                }}>
-                  <Card initiallyExpanded={true}>
-                    <CardHeader title={candidate.name} subtitle={formatSubtitle(candidate)} avatar={< Avatar />} showExpandableButton={true}/>
-                    <Card>
-                  <Row className="row center-xs">
-
-                        <Box>
-                          <FlatButton href={`https://twitter.com/${candidate.twitter_id}`}
-                            linkButton={true} label={`@${candidate.twitter_id}`}/>
-                          <FlatButton href={candidate.url} linkButton={true} label="Site"/>
-                        </Box>
-
-                    </Row>
-                    </Card>
-                    </Card>
-                    <Card>
-                    <CardHeader title={'Finances'} showExpandableButton={true}/>
-                    <Card initiallyExpanded={false} expandable={true}>
-                  <VBarStacked data={candidate.summary} />
-                  </Card>
-                    </Card>
-                    <Card>
-                    <CardHeader title={'Industries'} showExpandableButton={true}/>
-                    <Card initiallyExpanded={false} expandable={true}>
-                  <VBar data={candidate.industries} />
-                  </Card>
-                    </Card>
-                    <Card>
-                    <CardHeader title={'Sectors'} showExpandableButton={true} />
-                    <Card initiallyExpanded={false} expandable={true}>
-                      <VPie  data={candidate.sectors} />
-                  </Card>
-                    </Card>
-
-                </div>
-              </div>
-            </Paper>
-          </Box>
-        </Col>
-      ))}
+        {candidateBoxes}
     </Row>
   </Box>
-  )
+    );
+  }
 }
 
-export default CandidateDisplayContainer;
+function mapStateToProps(state) {
+  const {
+    dataByState: {
+      candidates
+    }
+  } = state;
+  return {candidates};
+}
+export default connect(mapStateToProps)(CandidateDisplayContainer);
 
 

@@ -7,12 +7,16 @@ import {Paper,Card,CardHeader,FlatButton,Avatar} from 'material-ui';
 import VBar from '../../components/DataVisuals/VBar.jsx';
 import VBarStacked from '../../components/DataVisuals/VBarStacked.jsx';
 import VPie from '../../components/DataVisuals/VPie.jsx';
+import DDonut from '../../components/DataVisuals/DDonut.jsx';
 import d3 from 'd3';
+
 String.prototype.capitalize = function(lower) {
 return (lower ? this.toLowerCase() : this).replace(/(?:^|\s)\S/g, function(a) {
   return a.toUpperCase();
   });
 }
+
+
 
 function formatSubtitle(candidate){
   let subStr = `${candidate.state}, ${candidate.chamber.capitalize()}`
@@ -23,20 +27,28 @@ class CandidateBox extends Component {
   constructor(props){
     super(props);
     this.state = {
-      candidate: null
+      candidate: null,
+      values: [Math.random() * 10000, Math.random() * 10000,
+                Math.random() * 10000, Math.random() * 10000,
+                Math.random() * 10000],
     }
   }
+
   componentWillReceiveProps(nextProps) {
-    debugger
     this.setState({candidate:nextProps.candidate})
+    console.log(nextProps);
   }
 
   componentWillUnmount() {
       d3.select('svg').remove();
   }
 
+
+
   render(){
     const {candidate} = this.props;
+
+
   return (<Col {...this.props} className="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
     <Box>
       <Paper style={{
@@ -79,7 +91,7 @@ class CandidateBox extends Component {
               <Card>
               <CardHeader title={'Sectors'} showExpandableButton={true} />
               <Card initiallyExpanded={false} expandable={true}>
-                <VPie  data={candidate.sectors} />
+                <DDonut data = {candidate.sectors} />
             </Card>
               </Card>
 

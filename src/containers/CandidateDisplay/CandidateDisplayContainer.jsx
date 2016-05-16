@@ -21,7 +21,6 @@ class CandidateDisplayContainer extends Component {
   }
 
   componentWillMount() {
-    // debugger
     // const mapContainer = d3.select('.visual-container');
     //     const initialScreenWidth = this.currentScreenWidth();
     //     const containerWidth = (initialScreenWidth < 600) ?
@@ -61,7 +60,6 @@ class CandidateDisplayContainer extends Component {
     render(){
       const {candidates} = this.props;
       console.log(candidates)
-      debugger
       let candidateBoxes = candidates.map((candidate, index) => {
         return (
         <CandidateBox key={index} candidate={candidate} />

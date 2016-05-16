@@ -60,7 +60,6 @@ class VBar extends Component {
     this.renderVisual = this.renderVisual.bind(this);
   }
   componentWillMount() {
-    debugger
     const visualContainer = d3.select('.visual-container');
         const initialScreenWidth = this.currentScreenWidth();
         const containerWidth = (initialScreenWidth < 600) ?
@@ -104,7 +103,6 @@ class VBar extends Component {
   }
 
   renderVisual(w,h){
-    debugger
     let data = this.props.data;
     let formattedData = mapData(data);
     let cleaned = cleanData(formattedData);

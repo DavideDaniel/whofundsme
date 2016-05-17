@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import NavigationClose from 'material-ui/lib/svg-icons/navigation/close';
 const CandidateClose = (props) => {
-
-      return (
+    return (
         <button {...props} style={{
             border: '10px',
             background: 'none',
@@ -38,7 +37,6 @@ const CandidateClose = (props) => {
                 }}></span>
                 <NavigationClose/>
             </div>
-
         </button>
     );
 }

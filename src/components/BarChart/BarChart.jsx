@@ -1,96 +1,122 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Legend from '../Legend/Legend.jsx';
 import './BarChart.css';
 import numeral from 'numeral';
-const colors = [
-    '#bebada',
-    '#fb8072',
-    '#8dd3c7',
-    '#ffffb3',
-    '#80b1d3',
-    '#fdb462',
-    '#b3de69',
-    '#fccde5',
-    '#2196F3',
-    '#bc80bd',
-    '#ccebc5',
-    '#ffed6f',
-    '#E91E63'
-];
-function compareNumbers(a, b) {
-  return a - b;
+
+function sortNums(a, b) {
+    return a - b;
 }
+
 class BarChart extends Component {
-  render(){
-		let self = this,
-			data = [[this.props.data[0]],[this.props.data[1]],[this.props.data[2]],[this.props.data[3]]],
-			layered = this.props.grouping === 'layered' ? true : false,
-			stacked = this.props.grouping === 'stacked' ? true : false,
-			opaque = this.props.opaque,
-		 max = 0;
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: null,
+            max: 0
+        }
+    }
 
-		for (let i = data.length; i--; ) {
-			for (let j = data[i].length; j--; ) {
-				if (data[i][j] > max) {
-					max = data[i][j];
-				}
-			}
-		}
+    componentDidMount() {
+        let data = this.props.data,
+            layered = this.props.grouping === 'layered'
+                ? true
+                : false,
+            stacked = this.props.grouping === 'stacked'
+                ? true
+                : false,
+            opaque = this.props.opaque,
+            max = 0;
+        for (let i = data.length; i--;) {
+            for (let j = data[i].length; j--;) {
+                if (data[i][j] > max) {
+                    max = data[i][j];
+                }
+            }
+        }
+        this.setState({data: data, layered: layered, stacked: stacked, opaque: opaque, max: max});
+    }
 
-    return (
-			<div className={ 'BarChart' + (this.props.horizontal ? ' horizontal' : '' ) }>
-				{ data.map(function (serie, serieIndex) {
-          console.log(serie,serieIndex);
-				 	let sortedSerie = serie.slice(0),
-				 		sum;
+    render() {
+        let self = this;
+        let max = self.state.max;
+        let opaque = this.props.opaque;
+        if (this.props.data.length) {
+            let data = this.props.data;
+            return (
+                <div className={'BarChart' + (this.props.horizontal
+                    ? ' horizontal'
+                    : '')}>
+                    {data.map((series, seriesIndex) => {
 
-				 	sum = serie.reduce(function (carry, current) {
-				 		return carry + current;
-					}, 0);
-				 	sortedSerie.sort(compareNumbers);
+                        let sum = series.length > 1
+                            ? series.reduce((carry, current) => {
+                                return carry + current;
+                            }, 0)
+                            : series[seriesIndex];
 
-					return (
-						<div className={ 'BarChart--serie ' + (self.props.grouping) }
-				 			key={ serieIndex }
-							style={{ height: self.props.height ? self.props.height: 'auto' }}
-						>
-						<label>{ self.props.labels[serieIndex] }</label>
-						{ serie.map(function (item, itemIndex) {
-							let color = self.props.colors[serieIndex], style,
-								size = item / (stacked ? sum : max) * 100;
+                        return (
+                            <div className={'BarChart--series ' + (self.props.grouping)} key={seriesIndex} style={{
+                                height: self.props.height
+                                    ? self.props.height
+                                    : 'auto'
+                            }}>
+                                <label>{self.props.labels[seriesIndex]}</label>
+                                {series.map((item, itemIndex) => {
+                                    let color = self.props.colorBySeries
+                                            ? self.props.colors[seriesIndex]
+                                            : self.props.colors[itemIndex],
+                                        style,
+                                        size = item / (self.state.stacked
+                                            ? sum
+                                            : max) * 100;
+                                    style = {
+                                        backgroundColor: color,
+                                        opacity: opaque
+                                            ? 1
+                                            : (item / max + .05),
+                                        zIndex: item
+                                    };
 
-							style = {
-								backgroundColor: color,
-								opacity: opaque ? 1 : (item/max + .05),
-								zIndex: item
-							};
+                                    if (self.props.horizontal) {
+                                        style['width'] = size + '%';
+                                    } else {
+                                        style['height'] = size + '%';
+                                    }
 
-							if (self.props.horizontal) {
-								style['width'] = size + '%';
-							} else {
-								style['height'] = size + '%';
-							}
+                                    if (self.state.layered && !self.props.horizontal) {
+                                        let sortedSeries = series.slice(0);
+                                        sortedSeries.sort(sortNums);
+                                        style['right'] = ((sortedSeries.indexOf(item) / (series.length + 1)) * 100) + '%';
+                                    }
 
-							if (layered && !self.props.horizontal) {
-								style['right'] = ((sortedSerie.indexOf(item) / (serie.length + 1)) * 100) + '%';
-							}
+                                    return (
+                                        <div className={'BarChart--item ' + (self.props.grouping)} style={style} key={itemIndex}>
+                                            <b style={{
+                                                color: color
+                                            }}>
+                                                {(self.props.dollarFormat
+                                                    ? numeral(item).format('$0,0')
+                                                    : item)}</b>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        );
+                    })}
 
-						 return (
-							 <div
-							 	className={ 'BarChart--item ' + (self.props.grouping) }
-							 	style={ style }
-								key={ itemIndex }
-							>
-							 	<b style={{ color: color }}>{ numeral(item).format('$0,0') }</b>
-							 </div>
-						);
-						}) }
-						</div>
-					);
-				}) }
-			</div>
-		);
-  }
+                </div>
+            );
+        } else {
+            return (
+                <div>Loading...</div>
+            )
+        }
+    }
 }
 
+BarChart.PropTypes = {
+    data: PropTypes.array.isRequired,
+    labels: PropTypes.array.isRequired,
+    colors: PropTypes.array.isRequired
+}
 export default BarChart

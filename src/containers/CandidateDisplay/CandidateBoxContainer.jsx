@@ -4,14 +4,12 @@ import Row from '../../components/FlexboxGrid/Row.jsx';
 import Col from '../../components/FlexboxGrid/Col.jsx';
 import Box from '../../components/FlexboxGrid/Box.jsx';
 import {Paper,Card,CardHeader,FlatButton,Avatar} from 'material-ui';
-import VBar from '../../components/DataVisuals/VBar.jsx';
-import VBarStacked from '../../components/DataVisuals/VBarStacked.jsx';
-import VPie from '../../components/DataVisuals/VPie.jsx';
 import DBar from '../../components/DataVisuals/DBar.jsx';
 import DDonut from '../../components/DataVisuals/DDonut.jsx';
 import DGroupedBar from '../../components/DataVisuals/DGroupedBar.jsx';
+import CandidateClose from './CandidateClose.jsx';
 import d3 from 'd3';
-import NavigationClose from 'material-ui/lib/svg-icons/navigation/close';
+
 
 String.prototype.capitalize = function(lower) {
 return (lower ? this.toLowerCase() : this).replace(/(?:^|\s)\S/g, function(a) {
@@ -60,45 +58,7 @@ class CandidateBox extends Component {
           }}>
             <Card initiallyExpanded={true}>
               <CardHeader title={candidate.name} subtitle={formatSubtitle(candidate)} avatar={< Avatar />} ref='closer'>
-                <button ref={candidate.crp_id} onClick={(e)=>this.props.delCandidate(e,candidate.crp_id)} style={{
-                  border: '10px',
-background: 'none',
-boxSizing: 'border-box',
-display: 'inline-block',
-font: 'inherit',
-fontFamily: 'Roboto, sans-serif',
-tapHighlightColor: 'rgba(0, 0, 0, 0)',
-cursor: 'pointer',
-textDecoration: 'none',
-outline: 'none',
-transform: 'translate3d(0, 0, 0)',
-position: 'absolute',
-transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
-padding: '12px',
-width: '48px',
-height: '48px',
-fontSize: '0',
-top: '0',
-bottom: '0',
-margin: 'auto',
-right: '4px',
-'-webkit-appearance': 'button'
-                  }}>
-                  <div>
-                    <span style={{
-                      height: '100%',
-width: '100%',
-position: 'absolute',
-top: '0',
-left: '0',
-overflow: 'hidden'
-                      }}>
-
-                    </span>
-                    <NavigationClose />
-                  </div>
-
-                </button>
+                <CandidateClose onClick={(e)=>this.props.delCandidate(e,candidate.crp_id)} />
               </CardHeader>
               <Card>
             <Row className="row center-xs">

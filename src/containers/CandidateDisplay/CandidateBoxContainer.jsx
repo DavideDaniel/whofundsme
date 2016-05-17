@@ -8,6 +8,7 @@ import VBar from '../../components/DataVisuals/VBar.jsx';
 import VBarStacked from '../../components/DataVisuals/VBarStacked.jsx';
 import VPie from '../../components/DataVisuals/VPie.jsx';
 import DDonut from '../../components/DataVisuals/DDonut.jsx';
+import DGroupedBar from '../../components/DataVisuals/DGroupedBar.jsx';
 import d3 from 'd3';
 
 String.prototype.capitalize = function(lower) {
@@ -15,8 +16,6 @@ return (lower ? this.toLowerCase() : this).replace(/(?:^|\s)\S/g, function(a) {
   return a.toUpperCase();
   });
 }
-
-
 
 function formatSubtitle(candidate){
   let subStr = `${candidate.state}, ${candidate.chamber.capitalize()}`
@@ -27,10 +26,7 @@ class CandidateBox extends Component {
   constructor(props){
     super(props);
     this.state = {
-      candidate: null,
-      values: [Math.random() * 10000, Math.random() * 10000,
-                Math.random() * 10000, Math.random() * 10000,
-                Math.random() * 10000],
+      candidate: null
     }
   }
 
@@ -85,7 +81,7 @@ class CandidateBox extends Component {
               <Card>
               <CardHeader title={'Industries'} showExpandableButton={true}/>
               <Card initiallyExpanded={false} expandable={true}>
-            <VBar data={candidate.industries} />
+              <DGroupedBar data={candidate.industries} />
             </Card>
               </Card>
               <Card>

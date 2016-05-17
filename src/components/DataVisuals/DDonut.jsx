@@ -10,10 +10,11 @@ import {
     Stack,
     Group
 } from 'diffract';
+import Legend from '../Legend/Legend.jsx';
 
 // const colors = ['#E91E63', '#2196F3', '#FF9800', '#4CAF50', '#673AB7'];
 const colors = ['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69','#fccde5','#2196F3','#bc80bd','#ccebc5','#ffed6f', '#E91E63'];
-const width = 640;
+const width = 240;
 const height = 240;
 
 class DDonut extends Component {
@@ -56,36 +57,34 @@ class DDonut extends Component {
       })
     }
 
-    getPieChart() {
+
+    render() {
       let name = null;
       let label = name || 'Sector';
       let percent = null || Math.round((this.state.currValue/this.state.total)*100);
       let labelPercent = percent ? `${percent}%` : 'by %';
-        return (
-            <Chart width={width} height={height}>
-                <DataSeries data={this.state.values}>
-                    <Pie innerRadius={75} outerRadius={110} onClick={(e, v, i) => {this.setLabel(v,i)}} style={(d, i) => ({fill: this.getColors(i)})}>
-                        <text className="donut-title" textAnchor="middle" x={0} y={0} fontSize={14}>
-                            {this.state.currLabel}
-                        </text>
-                        <text className="donut-subtitle" textAnchor="middle" x={0} y={18} fontSize={10}>
-                          {`${labelPercent}`}
-                        </text>
-                    </Pie>
-                </DataSeries>
-            </Chart>
-        );
-    }
-
-
-    render() {
-        const donut = this.getPieChart();
-
-        return (
-            <div width="640" height="480">
-                {donut}
-            </div>
-        )
+      return (<div style={{
+        display: 'flex',
+        flexFlow: 'row nowrap',
+        justifyContent: 'space-around'
+      }}>
+    <Chart style={{}} width={width} height={height}>
+              <DataSeries data={this.state.values}>
+                  <Pie innerRadius={75} outerRadius={110} onClick={(e, v, i) => {this.setLabel(v,i)}} style={(d, i) => ({fill: this.getColors(i)})}>
+                      <text className="donut-title" textAnchor="middle" x={0} y={0} fontSize={14}>
+                          {this.state.currLabel}
+                      </text>
+                      <text className="donut-subtitle" textAnchor="middle" x={0} y={18} fontSize={10}>
+                        {`${labelPercent}`}
+                      </text>
+                  </Pie>
+              </DataSeries>
+          </Chart>
+          <Legend styles={{
+              alignSelf: 'center'
+          }}
+          labels={ this.state.labels } colors={ colors } />
+      </div>);
     }
 }
 

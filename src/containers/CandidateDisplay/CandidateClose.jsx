@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
 import NavigationClose from 'material-ui/lib/svg-icons/navigation/close';
+
 const CandidateClose = (props) => {
     return (
         <button {...props} style={{

@@ -13,12 +13,12 @@
 .BarChart.horizontal {
   display: block;
 }
-.BarChart.horizontal .BarChart--serie {
+.BarChart.horizontal .BarChart--series {
   display: block;
   margin: 0 0 30px 0;
   border: 0;
 }
-.BarChart.horizontal .BarChart--serie label {
+.BarChart.horizontal .BarChart--series label {
   position: relative;
   top: auto;
   right: auto;
@@ -26,7 +26,7 @@
   bottom: auto;
   padding: 0 0 10px 0;
 }
-.BarChart--serie {
+.BarChart--series {
   height: 100%;
   margin: 0 30px 0 0;
   display: inline-block;
@@ -49,10 +49,10 @@
   position: relative;
   border-bottom: 1px solid #c2c2c2;
 }
-.BarChart--serie.stacked {
+.BarChart--series.stacked {
   display: block;
 }
-.BarChart--serie label {
+.BarChart--series label {
   position: absolute;
   left: 0;
   right: 0;
@@ -110,6 +110,7 @@
   top: -20px;
   color: #43A19E;
 }
+
 @-webkit-keyframes slideUp {
   from {
     -webkit-transform: scaleY(0);
@@ -120,6 +121,7 @@
             transform: scaleY(1);
   }
 }
+
 @keyframes slideUp {
   from {
     -webkit-transform: scaleY(0);

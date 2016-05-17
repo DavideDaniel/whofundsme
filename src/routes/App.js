@@ -14,7 +14,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div {...this.props}>
         <CandidatePage params={this.props.params}></CandidatePage>
       </div>
     );

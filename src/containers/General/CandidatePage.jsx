@@ -1,45 +1,28 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import Candidates from '../CandidateDisplay/Candidates.jsx';
 import CandidateMenuBar from '../CandidateMenu/CandidateMenuBar.jsx';
-import CandidateDisplayContainer from '../CandidateDisplay/CandidateDisplayContainer.jsx';
+import CandidateBox from '../CandidateDisplay/CandidateBoxContainer.jsx';
 import {fetchCandidate} from '../../actions/index.js';
+import Row from '../../components/FlexboxGrid/Row.jsx';
+import Box from '../../components/FlexboxGrid/Box.jsx';
 class CandidatePage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      candidates: []
+      candidates: null
     }
     this.handleAddCandidate = this.handleAddCandidate.bind(this);
     this.handleRemoveCandidate = this.handleRemoveCandidate.bind(this);
   }
 
-  componentWillMount() {
-
-  }
-  componentDidMount() {
-    // this.init(this.props)
-
-  }
-
   componentWillReceiveProps(nextProps){
-   this.setState({candidates: [...nextProps.candidates]});
-  }
-
-  componentWillUnmount() {
-
-  }
-
-  init(){
-
+    this.setState({candidates: [...nextProps.candidates]});
   }
 
   handleAddCandidate(candidate){
-
     const {dispatch} = this.props;
     dispatch(fetchCandidate(candidate));
-    // dispatch(addCandidate(candidate))
   }
 
   handleRemoveCandidate(crpId){
@@ -49,16 +32,36 @@ class CandidatePage extends Component {
         return cands.shift(i);
       }
     }
-    this.setState({candidates:cands})
+    this.setState({candidates:cands}) // TODO - fix state
   }
 
   render(){
-    const {stateName, list, candidates} = this.props;
-    return (<div {...this.props}>
-      <Candidates candidates={candidates}
-                  addCandidate={(candidate)=>this.handleAddCandidate(candidate)}
-                  delCandidate={(e,candidate)=>this.handleRemoveCandidate(candidate)}/>
-    </div>);
+    const {stateName, list} = this.props;
+
+    if (this.state.candidates != undefined && this.state.candidates.length > 0) {
+      let candidateBoxes = this.state.candidates.map((candidate, index) => {
+        return (
+        <CandidateBox key={index} ref={candidate.crp_id} delCandidate={(e,crpId)=>this.handleRemoveCandidate(crpId)} candidate={candidate} />
+      )
+    });
+
+      return (
+        <div {...this.props}>
+          <CandidateMenuBar addCandidate={(candidate)=>this.handleAddCandidate(candidate)}/>
+            <Box>
+              <Row>
+                {candidateBoxes}
+            </Row>
+          </Box>
+        </div>
+      );
+    } else {
+      return (
+        <div {...this.props}>
+          <CandidateMenuBar addCandidate={(candidate)=>this.handleAddCandidate(candidate)}/>
+        </div>
+      );
+    }
   }
 
 }

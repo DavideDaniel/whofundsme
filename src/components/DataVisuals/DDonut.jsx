@@ -42,6 +42,7 @@ class DDonut extends Component {
             labels: []
         }
         this.setLabel = this.setLabel.bind(this);
+        this.animateLabel = this.animateLabel.bind(this);
     }
 
     componentDidMount() {
@@ -73,6 +74,12 @@ class DDonut extends Component {
         this.setState({currValue: v, currLabel: this.state.labels[i]})
     }
 
+    animateLabel(i,_this){
+      let j = i+1;
+      let nextVal = i <= _this.state.values.length ? _this.state.values[j] : _this.state.values[0];
+      _this.setLabel(nextVal,j);
+    }
+
     render() {
         let name = null;
         let label = name || 'Sector';
@@ -80,16 +87,17 @@ class DDonut extends Component {
         let labelPercent = percent
             ? `${percent}%`
             : 'by %';
+
         return (
             <div style={{
                 display: 'flex',
                 flexFlow: 'row nowrap',
                 justifyContent: 'space-around'
             }}>
-                <Chart style={{}} width={width} height={height}>
+                <Chart width={width} height={height}>
                     <DataSeries data={this.state.values}>
                         <Pie innerRadius={75} outerRadius={110} onClick={(e, v, i) => {
-                            this.setLabel(v, i)
+                            this.setLabel(v,i);
                         }} style={(d, i) => ({fill: this.getColors(i)})}>
                             <text className="donut-title" textAnchor="middle" x={0} y={0} fontSize={14}>
                                 {this.state.currLabel}

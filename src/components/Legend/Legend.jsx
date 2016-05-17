@@ -5,8 +5,9 @@ const Legend = (props) => {
     const labels = props.labels;
     const colors = props.colors;
     const styles = props.styles;
+    const wrapRow = props.wrapRow ? 'wrapRow' : '';
     return (
-        <div className="Legend" style={styles}>
+        <div className={`Legend ${wrapRow}`} style={styles}>
             {labels.map(function(label, labelIndex) {
                 return (
                     <div key={labelIndex}>

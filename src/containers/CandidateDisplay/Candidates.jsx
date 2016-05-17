@@ -2,13 +2,13 @@ import React, {PropTypes} from 'react';
 import CandidateMenuBar from '../CandidateMenu/CandidateMenuBar.jsx';
 import CandidateDisplayContainer from './CandidateDisplayContainer.jsx';
 
-const Candidates = ({candidates, addCandidate}) => {
+const Candidates = ({candidates, addCandidate,delCandidate}) => {
 
   if (candidates != undefined && candidates.length > 0) {
     return (
       <div>
         <CandidateMenuBar addCandidate={addCandidate}/>
-        <CandidateDisplayContainer candidates={candidates}/>
+        <CandidateDisplayContainer delCandidate={delCandidate} candidates={candidates}/>
       </div>
     );
   } else {

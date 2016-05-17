@@ -5,7 +5,7 @@ const FETCH_CANDIDATE_LIST = 'FETCH_CANDIDATE_LIST';
 const FETCH_CANDIDATE = 'FETCH_CANDIDATE';
 
 export function fetchCandidateList(stateChoice) {
-  console.log(stateChoice)
+
   return (dispatch, getState) => wrapPromise(FETCH_CANDIDATE_LIST, dispatch, () => {
     return readData(stateChoice).then(response => {
       let result = {
@@ -75,7 +75,6 @@ export default function(state = {}, action = {
       return state;
     }
     if (stage === DONE) {
-      debugger
       return state = {
         ...state, candidates: [...state.candidates, payload],
         fetching: {

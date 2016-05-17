@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import Candidates from '../CandidateDisplay/Candidates.jsx';
 import CandidateMenuBar from '../CandidateMenu/CandidateMenuBar.jsx';
@@ -11,17 +12,19 @@ class CandidatePage extends Component {
       candidates: []
     }
     this.handleAddCandidate = this.handleAddCandidate.bind(this);
+    this.handleRemoveCandidate = this.handleRemoveCandidate.bind(this);
   }
 
   componentWillMount() {
-    
+
   }
   componentDidMount() {
     // this.init(this.props)
+
   }
 
   componentWillReceiveProps(nextProps){
-
+   this.setState({candidates: [...nextProps.candidates]});
   }
 
   componentWillUnmount() {
@@ -39,11 +42,22 @@ class CandidatePage extends Component {
     // dispatch(addCandidate(candidate))
   }
 
+  handleRemoveCandidate(crpId){
+    let cands = this.props.candidates;
+    for (var i = 0; i < cands.length; i++) {
+      if(cands[i].crp_id == crpId){
+        return cands.shift(i);
+      }
+    }
+    this.setState({candidates:cands})
+  }
+
   render(){
     const {stateName, list, candidates} = this.props;
     return (<div {...this.props}>
       <Candidates candidates={candidates}
-                  addCandidate={(candidate)=>this.handleAddCandidate(candidate)}/>
+                  addCandidate={(candidate)=>this.handleAddCandidate(candidate)}
+                  delCandidate={(e,candidate)=>this.handleRemoveCandidate(candidate)}/>
     </div>);
   }
 

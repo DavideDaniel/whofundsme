@@ -1,0 +1,23 @@
+query Legislators($state: String!) {
+      legislators(state: $state) {
+        first_name
+        last_name
+        twitter_account
+        bio_id
+        crp_id
+        facebook_account
+        next_election
+        party
+        votes_with_party_pct
+        missed_votes_pct
+        state
+        short_title
+        state_rank
+        summary {
+          cash_on_hand
+          spent
+          total
+          debt
+        }
+      }
+    }

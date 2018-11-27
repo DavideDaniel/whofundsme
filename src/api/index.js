@@ -1,3 +1,3 @@
-import { readData, getCandidate, getTwitterInfo } from './api.js';
+import { fetchLegislators, getLegislator, getTwitterInfo } from './api';
 
-export {readData, getCandidate, getTwitterInfo }
+export { fetchLegislators, getLegislator, getTwitterInfo };

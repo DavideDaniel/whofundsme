@@ -1,0 +1,21 @@
+query Legislator($crp_id: String!) {
+      legislator(crp_id: $crp_id) {
+        crp_id
+        bio_id
+        contributors {
+          pacs
+          indivs
+          org_name
+        }
+        sectors {
+          sector_name
+          pacs
+          indivs
+        }
+        industries {
+          industry_name
+          pacs
+          indivs
+        }
+      }
+    }
